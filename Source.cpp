@@ -7,21 +7,25 @@
 using namespace cv;
 using namespace std;
 
-int main(int argc, char** argv)
+Mat img;
+
+int main1()
 
 {
-	int height = 520;
-	int width = 840;
-	Mat img(height, width, CV_8UC3);
-	Point textOrg(100, img.rows / 2);
-	int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
-	double fontScale = 2;
-	Scalar color(200, 100, 50);
-	putText(img, "OpenCV Step By", textOrg, fontFace, fontScale, color);
+	setlocale(LC_ALL, "Russian");
+	char filename[80];
+	cout << "Ввудите имя файла, в который хотите внести измененя, и нажмите Enter" << endl;
+	cin.getline(filename, 80);
+	cout << "Открыт файл";
+	cout << filename << endl;
 
-	//namedWindow("Hello World", 0);
-	imshow("Hello World", img);
+	Mat img = imread(filename, 1);
+	
+
+	namedWindow("source_window", WINDOW_AUTOSIZE);
+	imshow("source_window", img);
+
+
 	waitKey(0);
-	system("pause");
-	return 0;
+	return (0);
 }
