@@ -47,7 +47,7 @@ mu[i] = moments(contours[i], false);
 	for (int i = 0; i < contours.size(); i++)
 	{
 		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
-		drawContours(drawing, contours, i, color, 2, 8, hierarchy, 0, Point());
+		drawContours(drawing, contours, i, color, 2, 8, hierarchy, 0, Point());//Рисование контуров
 		circle(drawing, mc[i], 4, color, -1, 5, 0);
 	}
 	namedWindow("êîíòóðû", WINDOW_AUTOSIZE);
