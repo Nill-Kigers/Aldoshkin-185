@@ -11,12 +11,12 @@ int main()
 {
 	int height = 1080;
 	int width = 1920;
-	Mat img(height, width, CV_8UC3); //создаётся изображение заданной ширены и высоты с 3-х канальным цветом
-	Point textOrg(100, img.rows / 2); //изменение положения текста по вертикали
+	Mat img(height, width, CV_8UC3); //СЃРѕР·РґР°С‘С‚СЃСЏ РёР·РѕР±СЂР°Р¶РµРЅРёРµ Р·Р°РґР°РЅРЅРѕР№ С€РёСЂРµРЅС‹ Рё РІС‹СЃРѕС‚С‹ СЃ 3-С… РєР°РЅР°Р»СЊРЅС‹Рј С†РІРµС‚РѕРј
+	Point textOrg(100, img.rows / 2); //РёР·РјРµРЅРµРЅРёРµ РїРѕР»РѕР¶РµРЅРёСЏ С‚РµРєСЃС‚Р° РїРѕ РІРµСЂС‚РёРєР°Р»Рё
 	int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
 	int fontScale = 5;
 	int fontSize = 5;
-	Scalar color(200, 100, 50); //цвет текста
+	Scalar color(200, 100, 50); //С†РІРµС‚ С‚РµРєСЃС‚Р°
 
 
 	putText(img, "OpenCV Step By Step", textOrg, fontFace, fontScale, color, fontSize);
@@ -35,8 +35,8 @@ int main()
 	blur(src_gray, src_gray, Size(3, 3));
 	double lower_thresh_val = 100, high_thresh_val = 300;
 	Canny(src_gray, canny_output, lower_thresh_val, high_thresh_val, 3);
-	namedWindow("Серое изображение", WINDOW_AUTOSIZE);
-	imshow("Серое изображение", canny_output);
+	namedWindow("РЎРµСЂРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ", WINDOW_AUTOSIZE);
+	imshow("РЎРµСЂРѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ", canny_output);
 	imwrite("canny_output.jpeg", canny_output);
 	RNG rng(12345);
 	vector<vector<Point>>contours;
@@ -53,7 +53,7 @@ mu[i] = moments(contours[i], false);
 		mc[i] = Point2f(mu[i].m10 / mu[i].m00, mu[i].m01 / mu[i].m00);
 	}
 	for (int i = 0;i < contours.size(); i++) {
-		printf("контур № %d:цент масс - x = %.2f y = %.2f; длина - %.2f \n", i, mu[i].m10 / mu[i].m00, mu[i].m01 / mu[i].m00, arcLength(contours[i], true));
+		printf("РєРѕРЅС‚СѓСЂ в„– %d:С†РµРЅС‚ РјР°СЃСЃ - x = %.2f y = %.2f; РґР»РёРЅР° - %.2f \n", i, mu[i].m10 / mu[i].m00, mu[i].m01 / mu[i].m00, arcLength(contours[i], true));
 	}
 	
 	Mat drawing = Mat::zeros(canny_output.size(), CV_8UC3);
@@ -63,9 +63,9 @@ mu[i] = moments(contours[i], false);
 		drawContours(drawing, contours, i, color, 2, 8, hierarchy, 0, Point());
 		circle(drawing, mc[i], 4, color, -1, 5, 0);
 	}
-	namedWindow("контуры", WINDOW_AUTOSIZE);
-	imshow("контуры", drawing);
-	imwrite("контуры.jpeg", drawing);
+	namedWindow("РєРѕРЅС‚СѓСЂС‹", WINDOW_AUTOSIZE);
+	imshow("РєРѕРЅС‚СѓСЂС‹", drawing);
+	imwrite("РєРѕРЅС‚СѓСЂС‹.jpeg", drawing);
 	waitKey(0);
 	system("pause");
 	return(0);*/
