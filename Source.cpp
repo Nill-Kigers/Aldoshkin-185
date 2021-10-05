@@ -14,7 +14,7 @@ int main1()
 {
 	setlocale(LC_ALL, "Russian");
 	char filename[80];
-	cout << "Ввудите имя файла, в который хотите внести измененя, и нажмите Enter" << endl;
+	cout << "Ввeдите имя файла, в который хотите внести измененя, и нажмите Enter" << endl;
 	cin.getline(filename, 80);
 	cout << "Открыт файл";
 	cout << filename << endl;
