@@ -8,10 +8,10 @@ using namespace cv;
 using namespace std;
 
 int main()
-{
+{	 //рисование окна
 	int height = 1080;
 	int width = 1920;
-	Mat img(height, width, CV_8UC3); //создаётся изображение заданной ширены и высоты с 3-х канальным цветом
+	Mat img(height, width, CV_8UC3); //создаётся матрица(Mat) изображение заданной ширены и высоты с 3-х канальным цветом
 	Point textOrg(100, img.rows / 2); //изменение положения текста по вертикали
 	int fontFace = FONT_HERSHEY_SCRIPT_SIMPLEX;
 	int fontScale = 5;
