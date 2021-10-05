@@ -37,12 +37,12 @@ int main()
 	img = imread("3.jpg", 1); imread -  считывает изображение из файла, заданного , выводя формат файла из его содержимого.
 	namedWindow("okno", WINDOW_AUTOSIZE); // название окна, авторазмер
 	imshow("okno", img); // отображает изображение в градациях серого на рисунке. использует диапазон отображения по умолчанию для типа данных изображения и оптимизирует свойства рисунка, осей и объекта изображения для отображения изображения
-	Mat src_gray;
-	Mat canny_output;
-	cvtColor(img, src_gray, COLOR_RGB2BGR);
-	blur(src_gray, src_gray, Size(3, 3));
-	double lower_thresh_val = 100, high_thresh_val = 300;
-	Canny(src_gray, canny_output, lower_thresh_val, high_thresh_val, 3);
+	Mat src_gray;  //Создание матрицы с названием src_gray
+	Mat canny_output; // Создание матрицы
+	cvtColor(img, src_gray, COLOR_RGB2BGR); //  cvtColor конвертирует изображения из одного цветового пространства в другое
+	blur(src_gray, src_gray, Size(3, 3));  // размытие
+	double lower_thresh_val = 100, high_thresh_val = 300; // нижний и верхний порог, нижний отвечает за шумы изображения, если задать много верхнего, то будет просто черное изображение
+	Canny(src_gray, canny_output, lower_thresh_val, high_thresh_val, 3); // оператор обнаружения границ изображения
 	namedWindow("Серое изображение", WINDOW_AUTOSIZE);
 	imshow("Серое изображение", canny_output);
 	imwrite("canny_output.jpeg", canny_output);
