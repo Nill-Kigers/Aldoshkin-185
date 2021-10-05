@@ -14,9 +14,9 @@ int main1()
 {
 	setlocale(LC_ALL, "Russian");
 	char filename[80];
-	cout << "Ââóäèòå èìÿ ôàéëà, â êîòîðûé õîòèòå âíåñòè èçìåíåíÿ, è íàæìèòå Enter" << endl;
+	cout << "Ð’Ð²ÑƒÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ Ñ„Ð°Ð¹Ð»Ð°, Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ð¹ Ñ…Ð¾Ñ‚Ð¸Ñ‚Ðµ Ð²Ð½ÐµÑÑ‚Ð¸ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ñ, Ð¸ Ð½Ð°Ð¶Ð¼Ð¸Ñ‚Ðµ Enter" << endl;
 	cin.getline(filename, 80);
-	cout << "Îòêðûò ôàéë";
+	cout << "ÐžÑ‚ÐºÑ€Ñ‹Ñ‚ Ñ„Ð°Ð¹Ð»";
 	cout << filename << endl;
 
 	Mat img = imread(filename, 1);
