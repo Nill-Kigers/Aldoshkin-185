@@ -26,7 +26,7 @@ int main()
 	imshow("Ñåðîå èçîáðàæåíèå", canny_output);
 	imwrite("canny_output.jpeg", canny_output);//вывод изображения
 	RNG rng(12345);
-	vector<vector<Point>>contours;
+	vector<vector<Point>>contours;//задает точку
 	vector<Vec4i>hierarchy;
 	findContours(canny_output, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0));//нахождение контуров
 	vector<Moments>mu(contours.size());
@@ -43,7 +43,7 @@ mu[i] = moments(contours[i], false);
 		printf("êîíòóð ¹ %d:öåíò ìàññ - x = %.2f y = %.2f; äëèíà - %.2f \n", i, mu[i].m10 / mu[i].m00, mu[i].m01 / mu[i].m00, arcLength(contours[i], true));
 	}
 	
-	Mat drawing = Mat::zeros(canny_output.size(), CV_8UC3);
+	Mat drawing = Mat::zeros(canny_output.size(), CV_8UC3);//создание матрицы с инициализацией
 	for (int i = 0; i < contours.size(); i++)
 	{
 		Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255));
