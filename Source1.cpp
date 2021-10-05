@@ -7,22 +7,24 @@
 using namespace cv;
 using namespace std;
 
+//CV_8UC3 – три 8 битных без-знаковых числа (вектор размера 3);
+
 int main()
 {
 	setlocale(LC_ALL, "Russian"); // задает языковой стандарт
-	Mat img;
-	img = imread("3.jpg", 1);
-	namedWindow("okno", WINDOW_AUTOSIZE);
-	imshow("okno", img);
+	Mat img; //создание изображения
+	img = imread("3.jpg", 1);//Запись изображения в файл
+	namedWindow("okno", WINDOW_AUTOSIZE);//отрисовка окна
+	imshow("okno", img);//вывод изображения
 	Mat src_gray;
 	Mat canny_output;
 	cvtColor(img, src_gray, COLOR_RGB2BGR);
 	blur(src_gray, src_gray, Size(3, 3));
-	double lower_thresh_val = 100, high_thresh_val = 300; //Создание бинарной системы цвета (255 - белый)
+	double lower_thresh_val = 100, high_thresh_val = 300; //Создание монохромной системы (255 - белый)
 	Canny(src_gray, canny_output, lower_thresh_val, high_thresh_val, 3); //оператор обнаружения границ изображения
 	namedWindow("Ñåðîå èçîáðàæåíèå", WINDOW_AUTOSIZE);
 	imshow("Ñåðîå èçîáðàæåíèå", canny_output);
-	imwrite("canny_output.jpeg", canny_output);
+	imwrite("canny_output.jpeg", canny_output);//вывод изображения
 	RNG rng(12345);
 	vector<vector<Point>>contours;
 	vector<Vec4i>hierarchy;
