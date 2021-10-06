@@ -31,7 +31,7 @@ int main()
 	//cin >> filename;  // ввод значения >>
 	//cout << "Ввели файл "<<filename<<endl; //endl текст будет выведен на след. строке 
 	
-	/*
+	
 	//Блок загрузки изображения, Оператор Canny
 	Mat img;//создает матрицу
 	img = imread("3.jpg", 1); //imread -  считывает изображение из файла, заданного , выводя формат файла из его содержимого.
@@ -39,7 +39,7 @@ int main()
 	imshow("okno", img); // отображает изображение в градациях серого на рисунке. использует диапазон отображения по умолчанию для типа данных изображения и оптимизирует свойства рисунка, осей и объекта изображения для отображения изображения
 	Mat src_gray;  //Создание матрицы с названием src_gray
 	Mat canny_output; // Создание матрицы
-	cvtColor(img, src_gray, COLOR_RGB2BGR); //  cvtColor конвертирует изображения из одного цветового пространства в другое
+	cvtColor(img, src_gray, COLOR_RGB2BGR); //  cvtColor конвертирует изображения из одного цветового пространства в другое (в монохромное)
 	blur(src_gray, src_gray, Size(3, 3));  // размытие
 	double lower_thresh_val = 100, high_thresh_val = 300; // нижний и верхний порог, нижний отвечает за шумы изображения, если задать много верхнего, то будет просто черное изображение
 	Canny(src_gray, canny_output, lower_thresh_val, high_thresh_val, 3); // оператор обнаружения границ изображения
@@ -54,17 +54,19 @@ int main()
 		vector<Vec4i>hierarchy;
 		findContours(canny_output, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0)); // нахождение контуров ,RETR_EXTERNAL - удаляет внутренние контуры  ,CHAIN_APPROX_SIMPLE - нужен для экономии памяти: если линия, то хранит только точки начала и конца.
 		vector<Moments>mu(contours.size());
+		//contours.size - кол-во контуров, проходим по всем контурам и определяем центр массы с помощью moments
 		for (int i = 0; i < contours.size(); i++)
 		{
 		mu[i] = moments(contours[i], false);
 		}
+		//зная 0,1,2 моменты, можно определить координаты центр масс по x and y
 		
 		vector<Point2f>mc(contours.size());
 		for (int i = 0; i < contours.size(); i++) 
 		{
 			mc[i] = Point2f(mu[i].m10 / mu[i].m00, mu[i].m01 / mu[i].m00);
 		}
-		for (int i = 0;i < contours.size(); i++) {
+		for (int i = 0; i < contours.size(); i++) {
 			printf("контур № %d:цент масс - x = %.2f y = %.2f; длина - %.2f \n", i, mu[i].m10 / mu[i].m00, mu[i].m01 / mu[i].m00, arcLength(contours[i], true));
 		}
 		
@@ -75,7 +77,7 @@ int main()
 		{
 			Scalar color = Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255)); //Тип Scalar широко используется в OpenCV для передачи значений пикселей, цвет
 			drawContours(drawing, contours, i, color, 2, 8, hierarchy, 0, Point()); //Полученные с помощью функции findContours контуры хорошо бы каким-то образом нарисовать в кадре. Машине это не нужно, зато нам это поможет лучше понять как выглядят найденные алгоритмом контуры. Поможет в этом ещё одна полезная функция — drawContours.
-			circle(drawing, mc[i], 4, color, -1, 5, 0);
+			circle(drawing, mc[i], 4, color, -1, 5, 0);// описывает окружность вокруг центра массы 
 		}
 	
 	namedWindow("контуры", WINDOW_AUTOSIZE);
