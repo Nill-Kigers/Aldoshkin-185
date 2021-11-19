@@ -1,3 +1,5 @@
+Оценки https://docs.google.com/spreadsheets/d/1sigaZ8M5s8NZi94R4XTTjXNyr5V21q39nhIfr9-Se8U/edit#gid=67700862
+
 1)заходим на сайт https://opencv.org/releases/ и устанавливаем последнюю версию OpenCV
 
 2)Создаем пустой проект с++ в visual studio
